@@ -10,7 +10,7 @@ class ProductRepositoryTest {
     Product countMonteCristo = new Book(413, "count Monte Cristo", 1200, "A. Dyuma");
     Product theWitcher = new Book(449, "The Witcher", 1900, "A. Sapkovskiy");
     Product onegin = new Book(404, "Onegin", 780, "A. Pushkin");
-    Product gameOfTrones = new Book(404, "Game Of Trones", 2300, "J. Martin");
+    Product gameOfTrones = new Book(354, "Game Of Trones", 2300, "J. Martin");
     Product lordOfTheRings = new Book(490, "Lord Of The Rings", 2400, "J.R. Tolkin");
     Product samsung = new Book(400, "Samsung in the life", 540, "Samseong Gurub");
     Product samsungPhone = new Smartphone(567, "SamsungGalaxyS9Plus", 30000, "Samseong Gurub");
@@ -54,6 +54,11 @@ class ProductRepositoryTest {
     @Test
     void shouldCatchException(){
         assertThrows(NotFoundException.class, () -> repository.removeById(40));
+    }
+
+    @Test
+    void shouldAddProductExist(){
+        assertThrows(AlreadyExistsException.class, () ->repository.save(onegin));
     }
 
 }

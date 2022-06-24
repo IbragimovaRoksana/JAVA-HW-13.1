@@ -4,6 +4,9 @@ public class ProductRepository {
     private Product[] items = new Product[0];
 
     public void save(Product product) {
+        if (findById(product.getId()) != null) {
+            throw new AlreadyExistsException("Element with id:" + product.getId() + " already exist");
+        }
         int length = items.length + 1;
         Product[] tmp = new Product[length];
         System.arraycopy(items, 0, tmp, 0, items.length);
